@@ -1,4 +1,4 @@
-/*
+/*milisecond, second alapú átírni pár dolgot,de hogy kell klónozni?
  *  ========================================================================
  *  Helper classes to support simulations of large scale distributed systems
  *  ========================================================================
