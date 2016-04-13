@@ -4,12 +4,12 @@ import hu.mta.sztaki.lpds.cloud.simulator.helpers.job.Job;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class GWAReader extends TraceFileReaderFoundation{
+public class BitbrainReader extends TraceFileReaderFoundation implements ReaderStrategy{
 
-	public GWAReader(String fileName, int from, int to,
+	public BitbrainReader(String fileName, int from, int to,
 			   		       boolean allowReadingFurther, Class<? extends Job> jobType)
 			             throws SecurityException, NoSuchMethodException{
-		super("Grid Workloads Archive", fileName, from, to, allowReadingFurther, jobType);
+		super("Bitbrain", fileName, from, to, allowReadingFurther, jobType);
 	}
 
 	@Override
