@@ -48,7 +48,7 @@ public class JobListAnalyser {
 	 */
 	public static long getEarliestSubmissionTime(List<Job> joblist) {
 		return Collections.min(joblist, JobListAnalyser.submitTimeComparator)
-				.getSubmittimeSecs();
+				.getSubmittime();
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class JobListAnalyser {
 	 */
 	public static long getLastTerminationTime(List<Job> joblist) {
 		return Collections.max(joblist, JobListAnalyser.stopTimeComparator)
-				.getStoptimeSecs();
+				.getStoptime();
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class JobListAnalyser {
 	public static final Comparator<Job> submitTimeComparator = new Comparator<Job>() {
 		@Override
 		public int compare(Job o1, Job o2) {
-			return Long.signum(o1.getSubmittimeSecs() - o2.getSubmittimeSecs());
+			return Long.signum(o1.getSubmittime() - o2.getSubmittime());
 		}
 	};
 
@@ -82,7 +82,7 @@ public class JobListAnalyser {
 	public static final Comparator<Job> stopTimeComparator = new Comparator<Job>() {
 		@Override
 		public int compare(Job o1, Job o2) {
-			return Long.signum(o1.getStoptimeSecs() - o2.getStoptimeSecs());
+			return Long.signum(o1.getStoptime() - o2.getStoptime());
 		}
 	};
 
