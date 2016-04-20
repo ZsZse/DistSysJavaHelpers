@@ -22,4 +22,22 @@ public class JobPrototyper {
 		System.out.println("ExampleJob type: "+clonedJob.getType());
 		
 	}
+	
+	public static String getJobType(Job j){
+		return j.getType();
+	}
+	
+	public static Job makeJob(String time){
+		switch(time){
+			case "MiliSecs":
+				return (Job)JobPrototyper.getJobInstance("1");
+			case "Secs":
+				return (Job)JobPrototyper.getJobInstance("2");	
+			case "Min":
+				return (Job)JobPrototyper.getJobInstance("3");
+			default: 
+				return (Job)JobPrototyper.getJobInstance("2");
+		}
+		
+	}
 }
