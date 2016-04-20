@@ -14,5 +14,22 @@ public class StrategyClient {
 		Job j=rc.executeStrategy(null);
 		
 	}
+	
+	public static void useStr(String fileType, 
+				  String fN, int from, int to, boolean aRF, Class<? extends Job> jobType) throws Exception{
+		ReaderContext rco;
+		switch(fileType){
+		case "GWA":
+			rco=new ReaderContext(new BitbrainReader(fN,from,to,aRF,jobType));
+			break;
+		case "SWF":
+			rco=new ReaderContext(new SWFReader(fN,from,to,aRF,jobType));
+			break;
+		case "ONE":
+			rco=new ReaderContext(new One2HistoryReader(fN,from,to,aRF,jobType));
+			break;
+		}
+
+	} 
 
 }
