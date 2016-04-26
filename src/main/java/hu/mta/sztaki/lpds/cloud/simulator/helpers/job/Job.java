@@ -12,22 +12,23 @@ public abstract class Job implements Cloneable{
 	private long queuetime;
 	private long starttime;
 	
-	public final int nprocs;
-	public final double perProcCPUTime;
-	public final long usedMemory;
-	public final String user;
-	public final String group;
-	public final String executable;
-	public final Job preceding;
-	public final long thinkTimeAfterPreceeding;
+	public int nprocs;	//final
+	public double perProcCPUTime;
+	public long usedMemory;
+	public String user;
+	public String group;
+	public String executable;
+	public Job preceding;
+	public long thinkTimeAfterPreceeding;
 	private long realqueueTime = -1;
 	private long realstopTime = -1;
 	private boolean ran = false;
 
-	public Job(String id, long submit, long queue, long exec, int nprocs,
-			   double ppCpu, long ppMem, String user,
-			   String group, String executable, Job preceding, long delayAfter){
-		
+	public Job(){}
+
+	public void setAllParam(String id, long submit, long queue, long exec, int nprocs,
+				double ppCpu, long ppMem, String user,
+			   	String group, String executable, Job preceding, long delayAfter){
 		this.id = id == null ? "" + this.hashCode() : id;
 		submittime = submit;
 		queuetime = queue;
