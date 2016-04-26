@@ -11,16 +11,18 @@ public class JobPrototyper {
 		return (Job)mappedJob.clone();	
 	}
 	
-	//Testmethods for the prototype deign pattern
 	public static void loadJobMap(){
-		//JobMin jm=new JobMin(/*default*/);
-		//jobMap.put(jm.getId(),jm);
+		JobSecs jms=new JobSecs();
+		jobMap.put("0",jms);
+		JobSecs js=new JobSecs();
+		jobMap.put("1",js);
+		JobMin jm=new JobMin();
+		jobMap.put("2",jm);
 	}
 	
 	public static void getJobfromMap(String id) throws Exception{
 		Job clonedJob=(Job)JobPrototyper.getJobInstance(id);
 		System.out.println("ExampleJob type: "+clonedJob.getType());
-		
 	}
 	
 	public static String getJobType(Job j){
@@ -38,6 +40,7 @@ public class JobPrototyper {
 			default: 
 				return (Job)JobPrototyper.getJobInstance("2");
 		}
-		
 	}
+	
+	public static void converter(){}
 }
