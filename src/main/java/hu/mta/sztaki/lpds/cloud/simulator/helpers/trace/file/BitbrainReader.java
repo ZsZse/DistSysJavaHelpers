@@ -20,23 +20,23 @@ public class BitbrainReader extends TraceFileReaderFoundation implements ReaderS
 	@Override
 	protected Job createJobFromLine(String line)
 			throws IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		  final String[] fragments = line.trim().split("\\s+");
-	
-		return jobCreator.newInstance(
+		final String[] fragments = line.trim().split("\\s+");
+		Job j=jobCreator.newInstance();
+		j.setAllParam(
 				// id:
 				fragments[0],
 				// submit time in secs:
 				Long.parseLong(fragments[0]),
 				// wait time in secs:
-				null,//Long.parseLong(fragments[2]), ?
+				(long)0,//Long.parseLong(fragments[2]), ?
 				// run time in secs:
-				null,//Long.parseLong(fragments[3]), ?
+				(long)0,//Long.parseLong(fragments[3]), ?
 				// allocated processors:
 				Integer.parseInt(fragments[2]),
 				// average cpu time:
-				(long)Double.parseDouble(fragments[3]), 
+				Double.parseDouble(fragments[3]), 
 				// average memory: ?
-				Integer.parseInt(fragments[7]),
+				(long)Integer.parseInt(fragments[7]),
 				// userid:
 				"USER",	
 				// groupid:
@@ -44,7 +44,9 @@ public class BitbrainReader extends TraceFileReaderFoundation implements ReaderS
 				// execid:
 				"EXEC",
 				// preceeding job
-				null, 0);
+				null, 
+				(long)0);
+		return j;
 	
 	/* 
 	 * Giving propertys at the website:
