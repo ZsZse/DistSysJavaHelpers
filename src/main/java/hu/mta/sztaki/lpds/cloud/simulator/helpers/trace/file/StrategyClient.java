@@ -15,20 +15,28 @@ public class StrategyClient {
 		
 	}
 	
-	public static void useStr(String fileType, 
-				  String fN, int from, int to, boolean aRF, Class<? extends Job> jobType) throws Exception{
+	public static ReaderContext useStr(String fileName, 
+							  String fN, int from, int to,
+	   		                  boolean aRF, Class<? extends Job> jobType) throws Exception{
 		ReaderContext rco;
-		switch(fileType){
-		case "GWA":
-			rco=new ReaderContext(new BitbrainReader(fN,from,to,aRF,jobType));
-			break;
-		case "SWF":
-			rco=new ReaderContext(new SWFReader(fN,from,to,aRF,jobType));
-			break;
-		case "ONE":
-			rco=new ReaderContext(new One2HistoryReader(fN,from,to,aRF,jobType));
-			break;
+		String[] fileN=fileName.split("\\s+");
+		
+		switch(fileN[1]){
+			case "gwa":
+				rco=new ReaderContext(new BitbrainReader(fN,from,to,aRF,jobType));
+				break;
+			case "swf":
+				rco=new ReaderContext(new SWFReader(fN,from,to,aRF,jobType));
+				break;
+			case "one":
+				rco=new ReaderContext(new One2HistoryReader(fN,from,to,aRF,jobType));
+				break;
+			default:
+				rco=new ReaderContext(new GWFReader(fN,from,to,aRF,jobType));
+				break;
 		}
+		
+		return rco;
 
 	} 
 
