@@ -1,3 +1,5 @@
+//1.main 2. mibe (órába?) 3. trace 4. eldönt jó-e
+
 package hu.mta.sztaki.lpds.cloud.simulator.helpers.job;
 
 public abstract class Job implements Cloneable{
