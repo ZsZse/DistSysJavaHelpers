@@ -29,18 +29,32 @@ public class JobPrototyper {
 		return j.getType();
 	}
 	
-	public static Job makeJob(String time){
+	public static Job makeJob(String time,long timeSample){
+		char[] c=(Long.toString(timeSample)).toCharArray();
+		Job j;
 		switch(time){
-			case "MiliSecs":
-				return (Job)JobPrototyper.getJobInstance("1");
+			case "miliSecs":
+				if(c.length==10)timeSample*=1000;
+				if(c.length==9)timeSample*=1000*60;
+				j=(Job)JobPrototyper.getJobInstance("0");
+				break;
 			case "Secs":
-				return (Job)JobPrototyper.getJobInstance("2");	
+				if(c.length==13)timeSample/=1000;
+				if(c.length==9)timeSample*=60;
+				j=(Job)JobPrototyper.getJobInstance("1");	
+				break;
 			case "Min":
-				return (Job)JobPrototyper.getJobInstance("3");
+				if(c.length==13)timeSample/=1000*60;
+				if(c.length==10)timeSample/=60;
+				j=(Job)JobPrototyper.getJobInstance("2");
+				break;
 			default: 
-				return (Job)JobPrototyper.getJobInstance("2");
+				if(c.length==13)timeSample/=1000;
+				if(c.length==9)timeSample*=60;
+				j=(Job)JobPrototyper.getJobInstance("1");
+				break;
 		}
+		j.setSubmitTime(timeSample);
+		return j;
 	}
-	
-	public static void converter(){}
 }
