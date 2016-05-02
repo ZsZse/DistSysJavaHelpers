@@ -48,6 +48,19 @@ public abstract class Job implements Cloneable{
 		this.thinkTimeAfterPreceeding = delayAfter;
 	}
 	
+	public void setId(String id) {
+		this.id = id == null ? "" + this.hashCode() : id;
+	}
+	public void setSubmitTime(long submit) {
+		submittime = submit;
+	}
+	public void setQueueTime(long queue) {
+		queuetime = queue;
+	}
+	public void setExecTime(long submit) {
+		submittime = submit;
+	}
+	
 	public String getId() {
 		return id;
 	}
