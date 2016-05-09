@@ -1,5 +1,10 @@
 package hu.mta.sztaki.lpds.cloud.simulator.helpers.job;
 
+import hu.mta.sztaki.lpds.cloud.simulator.helpers.trace.GenericTraceProducer;
+import hu.mta.sztaki.lpds.cloud.simulator.helpers.trace.TraceManagementException;
+import hu.mta.sztaki.lpds.cloud.simulator.helpers.trace.file.GWFReader;
+
+import java.io.File;
 import java.util.*;
 
 public class testProto {
@@ -7,27 +12,13 @@ public class testProto {
 	public static ArrayList<Job> list; 
 	public static String[] type={"miliSecs","Secs","Min"};
 	public static int jobDarab;
-	public static long[] sampleSubmitTime;
 	
-	public static void loadMakingParameters(){
-		jobDarab=10;
-		sampleSubmitTime=new long[jobDarab];	
-		sampleSubmitTime[0]=1220227200; //Secs
-		sampleSubmitTime[1]=1220227200*1000; //miliSecs
-		sampleSubmitTime[2]=122022720; //Min;
-		sampleSubmitTime[3]=1220227200;
-		sampleSubmitTime[4]=1220227200*1000;
-		sampleSubmitTime[5]=122022720;
-		sampleSubmitTime[6]=122022720;
-		sampleSubmitTime[7]=1220227200;
-		sampleSubmitTime[8]=1220227200*1000;
-		sampleSubmitTime[9]=122022720;
-	}
-	
-	public static void readJob(int db){
+	public static void readJob(int db,List<Job> preJob){
 		list=new ArrayList<>(db);
+		JobPrototyper.setType(type[1]);
+		
 		for(int i=0;i<db;i++){
-			Job j=JobPrototyper.makeJob(type[0],sampleSubmitTime[i]);
+			Job j=JobPrototyper.makeJob(preJob.get(i));
 			list.add(j);
 		}
 	}
@@ -38,14 +29,16 @@ public class testProto {
 		}
 	}
 	
-	public static void main(String[] args){
-		JobPrototyper.loadJobMap();
-		loadMakingParameters();
-		readJob(jobDarab);
+	public static void main(String[] args) throws SecurityException, NoSuchMethodException, TraceManagementException{
+		GenericTraceProducer producer=null;
+		String fileName="example";
+		if (new File(fileName).exists()) 
+			producer = new GWFReader(fileName,0,jobDarab,false,null);
+		List<Job> jobs = producer.getAllJobs();
+		
+		//raw/pre jobs by TraceProducer -> convert/make to final jobs 
+		readJob(jobDarab,jobs);
 		testingJob(list);
-		//char[] c=(Long.toString(sampleSubmitTime[1])).toCharArray();
-		//System.out.println(c.length);
-		//System.out.println(sampleSubmitTime[0]*1000);
 	}
-
+	
 }
