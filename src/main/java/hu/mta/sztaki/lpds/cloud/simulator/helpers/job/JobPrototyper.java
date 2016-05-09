@@ -2,9 +2,11 @@ package hu.mta.sztaki.lpds.cloud.simulator.helpers.job;
 
 import java.util.Hashtable;
 
+
 public class JobPrototyper {
 
 	private static Hashtable<String, Job> jobMap=new Hashtable<String,Job>();
+	private static String type;
 	
 	public static Job getJobInstance(String id){
 		Job mappedJob=jobMap.get(id);
@@ -29,7 +31,13 @@ public class JobPrototyper {
 		return j.getType();
 	}
 	
-	public static Job makeJob(String time,long timeSample){
+	public static void setType(String typ){
+		type=typ;
+		loadJobMap();
+	}
+	
+	public static Job makeJob(Job preJob){
+		long timeSample=preJob.getSubmittime();
 		char[] c=(Long.toString(timeSample)).toCharArray();
 		Job j;
 		switch(time){
