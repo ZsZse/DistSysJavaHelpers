@@ -35,9 +35,9 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class SWFReader extends TraceFileReaderFoundation {
 
-	public SWFReader(String fileName, int from, int to, boolean allowReadingFurther, Class<? extends Job> jobType)
+	public SWFReader(String fileName, int from, int to, boolean allowReadingFurther)
 			throws SecurityException, NoSuchMethodException {
-		super("Standard workload format", fileName, from, to, allowReadingFurther, jobType);
+		super("Standard workload format", fileName, from, to, allowReadingFurther);
 	}
 
 	@Override
