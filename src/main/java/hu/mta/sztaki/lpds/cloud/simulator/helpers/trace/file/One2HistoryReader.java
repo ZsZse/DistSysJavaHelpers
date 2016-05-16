@@ -63,10 +63,9 @@ public class One2HistoryReader extends TraceFileReaderFoundation {
 	 *             constructors.
 	 */
 	public One2HistoryReader(String fileName, int from, int to,
-			boolean allowReadingFurther, Class<? extends Job> jobType)
+			boolean allowReadingFurther)
 			throws SecurityException, NoSuchMethodException {
-		super("OpenNebula 2.x", fileName, from, to, allowReadingFurther,
-				jobType);
+		super("OpenNebula 2.x", fileName, from, to, allowReadingFurther);
 	}
 
 	/**
