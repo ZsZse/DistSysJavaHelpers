@@ -108,8 +108,7 @@ public abstract class TraceFileReaderFoundation extends TraceProducerFoundation 
 	 *             constructors.
 	 */
 	protected TraceFileReaderFoundation(String traceKind, String fileName, int from, int to,
-			boolean allowReadingFurther, Class<? extends Job> jobType) throws SecurityException, NoSuchMethodException {
-		super(jobType);
+			boolean allowReadingFurther) throws SecurityException, NoSuchMethodException {
 		this.traceKind = traceKind;
 		toBeRead = new File(fileName);
 		this.from = from;
