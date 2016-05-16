@@ -9,19 +9,8 @@ import java.util.*;
 
 public class testProto {
 	
-	public static ArrayList<Job> list; 
 	public static String[] type={"miliSecs","Secs","Min"};
 	public static int jobDarab;
-	
-	public static void readJob(int db,List<Job> preJob){
-		list=new ArrayList<>(db);
-		JobPrototyper.setType(type[1]);
-		
-		for(int i=0;i<db;i++){
-			Job j=JobPrototyper.makeJob(preJob.get(i));
-			list.add(j);
-		}
-	}
 	
 	public static void testingJob(ArrayList<Job> list){
 		for(Job temp:list){
@@ -30,15 +19,20 @@ public class testProto {
 	}
 	
 	public static void main(String[] args) throws SecurityException, NoSuchMethodException, TraceManagementException{
+		//using JobPrototyper to set the wanted type 
+		JobPrototyper.setType(type[1]);
 		GenericTraceProducer producer=null;
+		
+		//create a ReaderContext to using reader strategy
 		String fileName="example";
-		if (new File(fileName).exists()) 
-			producer = new GWFReader(fileName,0,jobDarab,false,null);
+		ReaderContext rc=StrategyClient.useStr(fileName,0,jobDarab,false);
+		
+		//finally make the producer with one wanted type and the right reader
+		producer=rc.getReader();
+		
 		List<Job> jobs = producer.getAllJobs();
 		
-		//raw/pre jobs by TraceProducer -> convert/make to final jobs 
-		readJob(jobDarab,jobs);
-		testingJob(list);
+		testingJob(jobs);
 	}
 	
 }
