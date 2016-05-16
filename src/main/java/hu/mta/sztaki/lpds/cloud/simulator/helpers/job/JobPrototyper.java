@@ -34,10 +34,21 @@ public class JobPrototyper {
 	public static void setType(String typ){
 		type=typ;
 		loadJobMap();
+		switch(type){
+		case "miliSecs":
+			TraceProducerFoundation.jobType=JobMiliSecs.class;
+			break;
+		case "Secs":
+			TraceProducerFoundation.jobType=JobSecs.class;
+			break;
+		case "Min":
+			TraceProducerFoundation.jobType=JobMin.class;
+			break;
+		}
 	}
 	
-	public static Job makeJob(Job preJob){
-		long timeSample=preJob.getSubmittime();
+	public static Job makeJob(long s){
+		long timeSample=s;
 		char[] c=(Long.toString(timeSample)).toCharArray();
 		Job j;
 		switch(time){
