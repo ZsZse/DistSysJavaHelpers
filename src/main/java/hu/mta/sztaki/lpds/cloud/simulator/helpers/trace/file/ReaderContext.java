@@ -20,4 +20,8 @@ public class ReaderContext {
 	{
 		return strategy.createJobFromLine(line);
 	}
+	
+	public TraceFileReaderFoundation getReader(){
+		return this.strategy;
+	}
 }
