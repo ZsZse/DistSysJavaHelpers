@@ -7,9 +7,9 @@ import hu.mta.sztaki.lpds.cloud.simulator.helpers.job.Job;
 public class PreziReader extends TraceFileReaderFoundation{
 
 	public PreziReader(String fileName, int from, int to,
-					           boolean allowReadingFurther, Class<? extends Job> jobType)
+					           boolean allowReadingFurther)
 					           throws SecurityException, NoSuchMethodException{
-		super("Prezi", fileName, from, to, allowReadingFurther, jobType);
+		super("Prezi", fileName, from, to, allowReadingFurther);
 		
 	}
 	
