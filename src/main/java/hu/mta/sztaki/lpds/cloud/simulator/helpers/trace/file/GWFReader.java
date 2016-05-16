@@ -63,9 +63,9 @@ public class GWFReader extends TraceFileReaderFoundation {
 	 *             constructors.
 	 */
 	public GWFReader(String fileName, int from, int to,
-			boolean allowReadingFurther, Class<? extends Job> jobType)
+			boolean allowReadingFurther)
 			throws SecurityException, NoSuchMethodException {
-		super("Grid workload format", fileName, from, to, allowReadingFurther, jobType);
+		super("Grid workload format", fileName, from, to, allowReadingFurther);
 	}
 
 	/**
