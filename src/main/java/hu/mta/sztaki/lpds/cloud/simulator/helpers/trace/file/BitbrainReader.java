@@ -7,9 +7,9 @@ import java.lang.reflect.InvocationTargetException;
 public class BitbrainReader extends TraceFileReaderFoundation implements ReaderStrategy{
 
 	public BitbrainReader(String fileName, int from, int to,
-			   		       boolean allowReadingFurther, Class<? extends Job> jobType)
+			   		       boolean allowReadingFurther)
 			             throws SecurityException, NoSuchMethodException{
-		super("Bitbrain", fileName, from, to, allowReadingFurther, jobType);
+		super("Bitbrain", fileName, from, to, allowReadingFurther);
 	}
 
 	@Override
